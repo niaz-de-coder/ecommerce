@@ -1,0 +1,61 @@
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS ecommerce;
+USE ecommerce;
+
+-- 1) User Table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    -- Regex check for BD numbers (e.g., +88017... or 017...)
+    phone_number VARCHAR(15) UNIQUE NOT NULL,
+    address TEXT NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2) Product Table
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_uid VARCHAR(50) UNIQUE NOT NULL, -- Custom Unique ID
+    name VARCHAR(255) NOT NULL,
+    image_url TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    description TEXT,
+    category VARCHAR(100),
+    tags TEXT,
+    quantity_available INT DEFAULT 0,
+    sold_quantity INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 3) Cart Table
+CREATE TABLE cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_email VARCHAR(100),
+    product_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_email) REFERENCES users(email) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+-- 4) Order Table
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_email VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(15) NOT NULL,
+    product_id INT NOT NULL,
+    product_quantity INT NOT NULL,
+    product_price DECIMAL(10, 2) NOT NULL,
+    address TEXT NOT NULL,
+    delivery_price DECIMAL(10, 2) DEFAULT 0.00,
+    vat DECIMAL(10, 2) DEFAULT 0.00,
+    other_cost DECIMAL(10, 2) DEFAULT 0.00,
+    payment_method VARCHAR(50),
+    total_price DECIMAL(10, 2) NOT NULL,
+    delivery_status ENUM('Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
+    payment_status ENUM('Unpaid', 'Paid', 'Refunded') DEFAULT 'Unpaid',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_email) REFERENCES users(email),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
