@@ -14,6 +14,41 @@ $total_products = $conn->query("SELECT COUNT(*) as count FROM products")->fetch_
 $total_orders = $conn->query("SELECT COUNT(*) as count FROM orders")->fetch_assoc()['count'];
 $total_users = $conn->query("SELECT COUNT(*) as count FROM users")->fetch_assoc()['count'];
 $revenue = $conn->query("SELECT SUM(total_price) as sum FROM orders WHERE payment_status = 'Paid'")->fetch_assoc()['sum'] ?? 0;
+
+// 1. Security Check
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: admin.php");
+    exit();
+}
+
+// 2. Database Connection
+$host = "localhost"; 
+$user = "root"; 
+$pass = ""; 
+$db = "ecommerce";
+$conn = new mysqli($host, $user, $pass, $db);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// 3. Fetch Quick Stats
+$total_products = $conn->query("SELECT COUNT(*) as count FROM products")->fetch_assoc()['count'];
+$total_orders = $conn->query("SELECT COUNT(*) as count FROM orders")->fetch_assoc()['count'];
+$total_users = $conn->query("SELECT COUNT(*) as count FROM users")->fetch_assoc()['count'];
+
+/**
+ * REVENUE CALCULATION:
+ * We select the sum of 'total_price' from the 'orders' table.
+ * We filter using WHERE payment_status = 'Paid' to ignore unpaid or refunded orders.
+ */
+$revenue_query = "SELECT SUM(total_price) as total_revenue FROM orders WHERE payment_status = 'Paid'";
+$revenue_result = $conn->query($revenue_query);
+$revenue_row = $revenue_result->fetch_assoc();
+
+// Use the null coalescing operator (??) to set revenue to 0 if no paid orders exist
+$revenue = $revenue_row['total_revenue'] ?? 0;
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +112,7 @@ $revenue = $conn->query("SELECT SUM(total_price) as sum FROM orders WHERE paymen
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm stat-card">
                 <div class="text-slate-400 text-xs font-bold uppercase mb-2">Total Revenue</div>
-                <div class="text-2xl font-black text-slate-800">$<?php echo number_format($revenue, 2); ?></div>
+                <div class="text-2xl font-black text-slate-800">BDT <?php echo number_format($revenue, 2); ?></div>
             </div>
             <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm stat-card">
                 <div class="text-slate-400 text-xs font-bold uppercase mb-2">Total Orders</div>

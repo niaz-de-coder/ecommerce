@@ -105,7 +105,7 @@ $products = $conn->query("SELECT * FROM products ORDER BY created_at DESC");
                             </td>
                             <td class="p-4 text-slate-500 text-sm"><?php echo $row['product_uid']; ?></td>
                             <td class="p-4"><span class="px-2 py-1 bg-slate-100 rounded text-xs"><?php echo $row['category']; ?></span></td>
-                            <td class="p-4 font-bold text-slate-700">$<?php echo $row['price']; ?></td>
+                            <td class="p-4 font-bold text-slate-700">BDT <?php echo $row['price']; ?></td>
                             <td class="p-4 <?php echo ($row['quantity_available'] < 5) ? 'text-red-500 font-bold' : 'text-slate-500'; ?>">
                                 <?php echo $row['quantity_available']; ?>
                             </td>
@@ -146,7 +146,7 @@ $products = $conn->query("SELECT * FROM products ORDER BY created_at DESC");
                             <input type="text" name="category" id="edit_category" class="w-full p-3 bg-slate-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-indigo-500">
                         </div>
                         <div>
-                            <label class="text-xs font-bold uppercase text-slate-400">Price ($)</label>
+                            <label class="text-xs font-bold uppercase text-slate-400">Price (BDT )</label>
                             <input type="number" step="0.01" name="price" id="edit_price" class="w-full p-3 bg-slate-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-indigo-500">
                         </div>
                         <div>

@@ -99,7 +99,7 @@ $vat_rate = 0.05;
                                 <img src="<?php echo $item['image_url']; ?>" class="w-16 h-16 rounded-xl object-cover">
                                 <div>
                                     <h4 class="font-bold text-sm"><?php echo $item['name']; ?></h4>
-                                    <p class="text-xs text-gray-500">$<?php echo number_format($item_price, 2); ?></p>
+                                    <p class="text-xs text-gray-500">BDT <?php echo number_format($item_price, 2); ?></p>
                                 </div>
                             </div>
                             

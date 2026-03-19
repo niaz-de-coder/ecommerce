@@ -53,7 +53,7 @@ CREATE TABLE orders (
     other_cost DECIMAL(10, 2) DEFAULT 0.00,
     payment_method VARCHAR(50),
     total_price DECIMAL(10, 2) NOT NULL,
-    delivery_status ENUM('Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
+    delivery_status ENUM('Pending', 'Processing', 'Delivered', 'Cancelled') DEFAULT 'Pending',
     payment_status ENUM('Unpaid', 'Paid', 'Refunded') DEFAULT 'Unpaid',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_email) REFERENCES users(email),

@@ -87,7 +87,7 @@ function getSpecialProducts($conn, $status) {
                 <h3 class="font-bold text-lg"><?php echo $row['name']; ?></h3>
                 <p class="text-gray-500 text-sm mb-3"><?php echo substr($row['description'], 0, 60); ?>...</p>
                 <div class="flex justify-between items-center">
-                    <span class="font-bold text-indigo-600">$<?php echo $row['price']; ?></span>
+                    <span class="font-bold text-indigo-600">BDT <?php echo $row['price']; ?></span>
                     <button onclick='showDetails(<?php echo json_encode($row); ?>)' class="text-sm font-semibold underline">Details</button>
                 </div>
             </div>
@@ -147,7 +147,7 @@ function getSpecialProducts($conn, $status) {
                 <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold mb-4">${product.category}</span>
                 <p class="text-gray-600 mb-6">${product.description}</p>
                 <div class="flex justify-between w-full items-center mb-6 px-4">
-                    <span class="text-2xl font-bold">$${product.price}</span>
+                    <span class="text-2xl font-bold">BDT ${product.price}</span>
                     <span class="text-sm text-gray-400">Stock: ${product.quantity_available}</span>
                 </div>
                 <button onclick="window.location.href='signin.php'" class="w-full py-4 bg-black text-white font-bold rounded-xl hover:bg-gray-800 transition">

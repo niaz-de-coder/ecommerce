@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="file" name="product_image" accept="image/*" required class="input-field file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
                     </div>
                     <div class="space-y-2">
-                        <label class="text-xs font-bold uppercase text-slate-400 tracking-widest">Unit Price ($)</label>
+                        <label class="text-xs font-bold uppercase text-slate-400 tracking-widest">Unit Price (BDT )</label>
                         <input type="number" step="0.01" name="price" placeholder="0.00" required class="input-field">
                     </div>
 

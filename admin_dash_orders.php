@@ -94,7 +94,7 @@ $orders = $conn->query("SELECT o.*, p.name as product_name, p.image_url FROM ord
 
                 <div class="flex-1 text-center lg:text-left">
                     <p class="text-xs font-bold text-slate-400 uppercase mb-1">Total Paid</p>
-                    <span class="text-lg font-black text-slate-800">$<?php echo number_format($row['total_price'], 2); ?></span>
+                    <span class="text-lg font-black text-slate-800">BDT <?php echo number_format($row['total_price'], 2); ?></span>
                     <p class="text-[10px] text-slate-400 font-bold"><?php echo $row['payment_method']; ?></p>
                 </div>
 

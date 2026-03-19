@@ -92,7 +92,7 @@ function getSpecialProducts($conn, $status) {
                 <img src="<?php echo $row['image_url']; ?>" class="h-48 w-full object-cover rounded-lg mb-4">
                 <h3 class="font-bold text-lg"><?php echo $row['name']; ?></h3>
                 <div class="flex justify-between items-center mt-3">
-                    <span class="font-bold text-indigo-600">$<?php echo $row['price']; ?></span>
+                    <span class="font-bold text-indigo-600">BDT <?php echo $row['price']; ?></span>
                     <button onclick='showDetails(<?php echo json_encode($row); ?>)' class="text-sm font-semibold underline">Details</button>
                 </div>
             </div>

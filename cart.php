@@ -67,7 +67,7 @@ $total_price = 0;
                             <p class="text-gray-400 text-sm"><?php echo $item['category']; ?></p>
                         </div>
                         <div class="text-right mr-8">
-                            <span class="font-bold text-xl">$<?php echo number_format($item['price'], 2); ?></span>
+                            <span class="font-bold text-xl">BDT <?php echo number_format($item['price'], 2); ?></span>
                         </div>
                         <button onclick="removeFromCart(<?php echo $item['cart_id']; ?>)" class="text-red-400 hover:text-red-600 transition p-2">
                             <i class="fa-regular fa-trash-can text-lg"></i>
@@ -88,7 +88,7 @@ $total_price = 0;
         <div class="bg-gray-50 p-8 flex flex-col md:flex-row justify-between items-center border-t border-gray-100">
             <div class="mb-4 md:mb-0">
                 <span class="text-gray-500 uppercase tracking-widest text-xs font-bold">Total Amount</span>
-                <h3 class="text-3xl font-black text-black">$<?php echo number_format($total_price, 2); ?></h3>
+                <h3 class="text-3xl font-black text-black">BDT <?php echo number_format($total_price, 2); ?></h3>
             </div>
             <button onclick="window.location.href='order.php'" class="w-full md:w-auto bg-black text-white px-12 py-4 rounded-2xl font-bold hover:bg-gray-800 transition shadow-xl">
                 Proceed to Checkout <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
